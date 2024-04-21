@@ -1,0 +1,15 @@
+h1 {
+    text-align: center;
+    color: white;
+}
+.color-white {
+    color: white;
+}
+.color-red {
+    color: red;
+}
+
+.table-responsive {
+    height:280px;
+    overflow-y:scroll;
+}

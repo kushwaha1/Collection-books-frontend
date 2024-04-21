@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import "styles/styles.css"; */
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+/* body {
+    margin: 0px;
+} */
+
+body {
+    margin: 0%;
+    padding: 0%;
+    width: 100%;
+    height: 20px;
+    background-image: url("../assets/book-library-with-open-textbook.jpg");
+    background-size: cover;
+}

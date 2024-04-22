@@ -1,0 +1,130 @@
+<div class="container">
+    <h1>Collection of Books</h1>
+    <div class="row box mb-4">
+        <form [formGroup]="form" >
+          <div class="row mt-2">
+            <div class="col-md-4 mt-2">
+                <label class="color-white">Title<span class="color-red">*</span></label>
+                <div class="form-group">
+                    <input class="form-control py-2" formControlName="title" type="text" type="text" placeholder="Enter title" />
+                    <div *ngIf="submitted || f['title'].touched">
+                        <span class="text-danger small" *ngIf="!f['title'].value">Title is required</span>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-md-4 mt-2">
+                <label class="color-white">Author<span class="color-red">*</span></label>
+                <div class="form-group">
+                    <input class="form-control py-2" formControlName="author" type="text" placeholder="Enter author" />
+                    <div *ngIf="submitted || f['author'].touched">
+                        <span class="text-danger small" *ngIf="!f['author'].value">Author is required</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-2">
+                <label class="color-white">Description<span class="color-red">*</span></label>
+                <div class="form-group">
+                    <input class="form-control py-2" formControlName="description" type="text" placeholder="Enter description" />
+                    <div *ngIf="submitted || f['description'].touched">
+                        <span class="text-danger small" *ngIf="!f['description'].value">Description is required</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-2">
+                <label class="color-white">Publication Year<span class="color-red">*</span></label>
+                <div class="form-group">
+                    <input class="form-control py-2" formControlName="publicationYear" type="number" placeholder="Enter publication year" />
+                    <div *ngIf="submitted || f['publicationYear'].touched">
+                        <span class="text-danger small" *ngIf="!f['description'].value">Publication Year is required</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-2">
+                <label class="color-white">ISBN<span class="color-red">*</span></label>
+                <div class="form-group">
+                    <input class="form-control py-2" formControlName="ISBN" type="text" placeholder="Enter ISBN" />
+                    <div *ngIf="submitted || f['ISBN'].touched">
+                        <span class="text-danger small" *ngIf="!f['description'].value">ISBN is required</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-4" *ngIf="showUpdateTaskButton == true">
+                <div class="form-group">
+                  <button class="btn btn-primary btn-block" (click)="updateBook()">
+                    Update Book
+                  </button>
+                  <button class="btn btn-primary btn-block mx-2" (click)="cancel()">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-12 mt-4" *ngIf="showAddTaskButton == true">
+                <div class="form-group">
+                  <button class="btn btn-primary btn-block updateBtn" (click)="addBook()">
+                    <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add Book
+                  </button>
+                </div>
+              </div>
+            <!-- <div class="col-md-4">
+                <div class="form-group mt-4 mb-0">
+                    <div *ngIf="buttonUpdate; else elseBlock" class="d-flex">
+                        <button class="btn btn-primary btn-block mx-4" (click)="onSubmit()">
+                            <i class="bi bi-pencil-square" aria-hidden="true"></i>&nbsp;Update
+                        </button>
+                        <button class="btn btn-primary btn-block" (click)="goBack('decline')" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-controls="collapseOne">
+                            <i class="fa fa-times" aria-hidden="true"></i>&nbsp;Cancel
+                        </button>
+                    </div>
+                    <ng-template #elseBlock>
+                        <button class="btn btn-primary btn-block mt-4" (click)="onSubmit()">
+                            Add Book
+                        </button>
+            
+                    </ng-template>
+                </div>
+            </div> -->
+
+          </div>
+        </form>
+      </div>
+    <div class="row">
+        <div class="col-12 table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">S. No.</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Publication Year</th>
+                        <th scope="col">ISBN</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let book of allBooks; let i = index;">
+                        <td>{{i+1}}</td>
+                        <td>{{book.title}}</td>
+                        <td>{{book.author}}</td>
+                        <td>{{book.description}}</td>
+                        <td>{{book.publicationYear}}</td>
+                        <td>{{book.ISBN}}</td>
+                        <td>
+                            <!-- <a href="#" [routerLink]="['/book/','view',book.id]" class="btn btn-info">View</a>
+                            <a href="#" [routerLink]="['/book/','edit',book.id]" class="btn btn-primary">Update</a> -->
+                            <button type="button" class="btn btn-primary mx-2 mb-2" (click)="viewBook(book.ISBN)"><i class="bi bi-eye-fill"></i></button>
+                            <button type="button" class="btn btn-success mx-2 mb-2" (click)="getEditDetail(book)"><i class="bi bi-pencil-square"></i></button>
+                            <button type="button" class="btn btn-danger mx-2 mb-2" (click)="deleteBook(book.ISBN)"><i class="bi bi-trash3-fill"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>

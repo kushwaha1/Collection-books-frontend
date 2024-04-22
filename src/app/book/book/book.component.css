@@ -1,0 +1,16 @@
+h1 {
+    text-align: center;
+    color: white;
+}
+.color-white {
+    color: white;
+}
+.color-red {
+    color: red;
+}
+
+
+.table-responsive {
+    max-height:280px;
+    padding: 0px;
+}

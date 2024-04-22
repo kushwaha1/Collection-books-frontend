@@ -33,7 +33,7 @@ export class BookComponent {
   
   public myContent: any;
   // searchText: string;
-  id: any;
+  ISBNData: any;
   constructor(
     public bookService: BookService,
     public toastr: ToastrService,
@@ -63,12 +63,10 @@ export class BookComponent {
       .getAll()
       .subscribe((result: any) => {
         this.allBooks = result.data;
-        console.log('this.allBooks', this.allBooks);
       });
   }
 
   addBook() {
-    console.log('sdfs')
     this.submitted = true;
     const jsonArray = {
       title: this.form.value.title,
@@ -80,7 +78,6 @@ export class BookComponent {
     if (!this.form.valid) {
       return
     }
-    console.log('jsonArray', jsonArray)
       this.bookService.create(jsonArray).subscribe((result: any) => {
         if (result) {
           setTimeout(() => {
@@ -121,7 +118,7 @@ export class BookComponent {
       publicationYear: this.form.value.publicationYear,
       ISBN: this.form.value.ISBN
     }
-      this.bookService.update(jsonArray.ISBN, jsonArray).subscribe(result => {
+      this.bookService.update(this.ISBNData, jsonArray).subscribe(result => {
         if (result) {
           setTimeout(() => {
             this.toastr.success('', 'Book Updated Successfully');
@@ -160,6 +157,7 @@ export class BookComponent {
   }
 
   getEditDetail(data: any) {
+    this.ISBNData = data.ISBN;
     this.showAddTaskButton = false;
     this.showUpdateTaskButton = true;
     this.form.patchValue(data);

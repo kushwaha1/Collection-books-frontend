@@ -9,7 +9,8 @@ h1 {
     color: red;
 }
 
+
 .table-responsive {
-    height:280px;
-    overflow-y:scroll;
+    max-height:280px;
+    padding: 0px;
 }
